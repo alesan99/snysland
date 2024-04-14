@@ -1,13 +1,22 @@
 import * as THREE from 'three';
 import { GLTFLoader } from 'GLTFLoader';
 import { ColladaLoader } from 'ColladaLoader';
-
+import AudioSystem from './audio.js';
 
 class AssetsClass {
 	constructor() {
-		this.image = {}
+		this.image = {};
 
 		this.startLoading();
+
+		this.sfx = {};
+		console.log(AudioSystem)
+		this.sfx.wompwomp = AudioSystem.newSound("assets/sound/wompwomp.mp3")
+		this.sfx.intro = AudioSystem.newSound("assets/sound/intro.mp3")
+		this.sfx.hiss = AudioSystem.newSound("assets/sound/hiss.mp3")
+		this.sfx.rattle = AudioSystem.newSound("assets/sound/rattle.mp3")
+		this.sfx.stopone = AudioSystem.newSound("assets/sound/stopone.m4a")
+		this.sfx.stoptwo = AudioSystem.newSound("assets/sound/stoptwo.m4a")
 		
 		this.model_loader = new GLTFLoader();
 		this.model_loader_collada = new ColladaLoader();

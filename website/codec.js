@@ -16,6 +16,7 @@ class Codec {
         Assets.mesh.title.position.set(0, 4, -4.25);
         Assets.mesh.title.scale.set(.5, .5, .5);
         
+		AudioSystem.playSound(Assets.sfx.intro);
     }
     
 	spawnObject(name, obj, id) {
@@ -42,6 +43,7 @@ class Codec {
         this.scene.remove(Assets.mesh.title);
 		stateManager.set(world, this.scene);
 
+		AudioSystem.stopSound(Assets.sfx.intro);
 
 	}
 

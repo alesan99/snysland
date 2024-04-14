@@ -1,5 +1,6 @@
 import * as THREE from 'three';
 import { GameClass } from './game.js';
+import AudioSystem from './audio.js';
 
 const gameWidth = 1280;
 const gameHeight = 720;

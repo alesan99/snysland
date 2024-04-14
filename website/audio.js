@@ -3,7 +3,7 @@
 
 // Asset loading
 // import {Howl} from 'howler';
-class AudioSystem {function() {
+const AudioSystem = (function() {
 	let currentMusic = false
 
 	let sounds = []
@@ -68,5 +68,6 @@ class AudioSystem {function() {
 		}
 	};
 	
-	return audioFunctions; }};
+	return audioFunctions; })();
+
 export default AudioSystem;

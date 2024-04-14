@@ -48,10 +48,24 @@ export class Player extends PhysicsObject {
 		this.model = Assets.mesh.player.clone();
 		scene.add(this.model);
 
+		this.dead = false;
+		this.deadTimer = 0;
+
 		this.setPosition(x, y);
 	}
 
 	update(dt) {
+		if (this.dead) {
+			this.deadTimer -= dt;
+			if (this.deadTimer <= 0) {
+				this.dead = false;
+				this.spawn(this.spawnX, this.spawnY);
+			}
+			this.sx = 0;
+			this.sy = 0;
+			return
+		}
+
 		let but = this.buttons;
 		// turning
 		if (but.turnLeft) {
@@ -104,7 +118,8 @@ export class Player extends PhysicsObject {
 	}
 
 	die() {
-		this.spawn(this.spawnX, this.spawnY);
+		this.dead = true;
+		this.deadTimer = 2;
 	}
 
 	render(render, scene, camera) {

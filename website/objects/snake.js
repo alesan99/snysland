@@ -4,6 +4,7 @@ import { Shape } from '../shape.js'
 import Assets from '../assets.js'
 import { vec2Unit, vec2Norm } from '../vec2.js'
 import world from '../world.js'
+import AudioSystem from '../audio.js'
 
 export class Snake extends PhysicsObject {
 	constructor (spatialHash, scene, id, x, y, angle=0, pivot_360, clockwise, start_angle = null, end_angle = null, path) {
@@ -81,6 +82,8 @@ export class Snake extends PhysicsObject {
 			this.static = true;
 		}
 		this.model.rotation.y = this.angle;
+
+		this.stopped = false;
 		
 		scene.add(this.model);
 
@@ -110,6 +113,9 @@ export class Snake extends PhysicsObject {
 	}
 
     update(dt) {
+		if (this.stopped) {
+			return;
+		}
         this.model.position.set(this.x, this.z, -this.y);
 		// Pivot 360 (Spin in circle)
 		if (this.turnTimer) {
@@ -207,8 +213,20 @@ export class Snake extends PhysicsObject {
 		let spoty = this.y + Math.sin(this.angle) * 15;
 		let dist = Math.sqrt((player.x-spotx)**2 + (player.y-spoty)**2);
 		if (dist < spotr) {
-			// player is in spotlight
-			player.die()
+			if (!player.dead) {
+				this.stopped = true;
+				let soundi = Math.floor(Math.random()*3)+1;
+				if (soundi === 1) {
+					AudioSystem.playSound(Assets.sfx.stopone);
+				} else if (soundi === 2) {
+					AudioSystem.playSound(Assets.sfx.stoptwo);
+				} else if (soundi === 3) {
+					AudioSystem.playSound(Assets.sfx.wompwomp);
+				}
+	
+				// player is in spotlight
+				player.die()
+			}
 		}
     }
 
