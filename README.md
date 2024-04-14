@@ -1,7 +1,7 @@
 # snysland
 HackKU 2024!
 
-https://alesan99.github.io/snyslandy/
+https://alesan99.github.io/snysland/
 
 # Installation
 Run the command:
