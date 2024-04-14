@@ -1,6 +1,8 @@
 # snysland
 HackKU 2024!
 
+https://alesan99.github.io/snysland/
+
 # Installation
 Run the command:
 npm ci
