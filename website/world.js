@@ -8,7 +8,7 @@ class World {
 
 	}
 
-	load (scene, area="area4") {
+	load (scene, area="area1") {
 		if (area == "finish") {
 			window.location.href = "https://www.youtube.com/watch?v=sOX4-t74Wq0";
 			return;
