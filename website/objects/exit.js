@@ -4,6 +4,7 @@ import { Shape } from '../shape.js'
 import Assets from '../assets.js'
 import { vec2Unit, vec2Norm } from '../vec2.js'
 import world from '../world.js';
+import { Game } from '../main.js';
 import * as THREE from 'three';
 
 export class Exit extends PhysicsObject {
@@ -50,9 +51,13 @@ export class Exit extends PhysicsObject {
 	// Collision
 	collide(name, obj, nx, ny) {
 		if (name == "Player") {
-			world.scene = new THREE.Scene();
+			let newScene = new THREE.Scene();
+			Game.scene = newScene;
+			Game.initializeScene();
+			world.scene = newScene;
+			newScene.add(world.player.model);
 
-			world.load(world.scene, this.to)
+			world.load(newScene, this.to)
 			return true
 		}
 		return true

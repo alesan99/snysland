@@ -70,7 +70,7 @@
             "clockwise": false
         }
     ],
-    "entrance": [0,11],
+    "entrance": [1,11],
     "exit": [15,1],
-    "exit_to": "area3"
+    "exit_to": "area4"
 }

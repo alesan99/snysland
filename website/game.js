@@ -24,18 +24,22 @@ export class GameClass {
 	start() {
 		// call this after loading is done
 		this.started = true;
-
-		// Create a point light
-		const directionalLight = new THREE.DirectionalLight( 0xffffff, 0.9 );
-		directionalLight.position.set(1, 1, 1); // default; light shining from top
-		const light = new THREE.AmbientLight( 0x404040 ); // soft white light
-		this.scene.add( light );
-
-		this.scene.add(directionalLight); // Add the light to the scene
+		
+		this.initializeScene();
 
 		// Start game world
 		stateManager.set(codec, this.scene);
 		
+	}
+
+	initializeScene() {
+		// Create a point light
+		const directionalLight = new THREE.DirectionalLight( 0xffffff, 1.3 );
+		directionalLight.position.set(1, 1, 1); // default; light shining from top
+		const light = new THREE.AmbientLight( 0x505065 ); // soft white light
+		this.scene.add( light );
+
+		this.scene.add(directionalLight); // Add the light to the scene
 	}
 
 	update(dt) {

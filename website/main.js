@@ -14,9 +14,7 @@ renderer.setSize(gameWidth, gameHeight);
 export const canvasContainer = document.getElementById('canvas');
 canvasContainer.appendChild(renderer.domElement);
 
-console.log("let there be light")
-
-const Game = new GameClass(renderer, scene, camera);
+export const Game = new GameClass(renderer, scene, camera);
 
 var FPS = 0
 var lastTimestamp = 0

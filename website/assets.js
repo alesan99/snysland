@@ -25,7 +25,6 @@ class AssetsClass {
 
 		this.mesh = {};
 		this.mesh_collection = {};
-		//this.mesh.player = this.loadModel("assets/ball.glb");
 		
 		const geometry = new THREE.BoxGeometry( 1, 1, 1 );
 		this.mesh.block = new THREE.Mesh(geometry, this.material.missing);
@@ -34,10 +33,11 @@ class AssetsClass {
 		this.loadModel("assets/snake.glb", "snake");
 		this.loadModel("assets/title.glb", "title");
 
-		this.loadModel("assets/area1.dae", "area1", this.model_loader_collada);
-		this.loadModel("assets/area2.dae", "area2", this.model_loader_collada);
-		this.loadModel("assets/area3.dae", "area3", this.model_loader_collada);
-		this.loadModel("assets/area4.dae", "area4", this.model_loader_collada);
+		this.loadModel("assets/area1.glb", "area1");
+		this.loadModel("assets/area2.glb", "area2");
+		this.loadModel("assets/area3.glb", "area3");
+		this.loadModel("assets/area4.glb", "area4");
+		//this.loadModel("assets/area4.glb", "area4", this.model_loader_collada);
 		//this.loadModel("assets/level1entrancephase.glb", "area");
 
 		// JSONs
@@ -62,16 +62,23 @@ class AssetsClass {
 				filename,
 				// called when the resource is loaded
 				function (gltf) {
-					if (loader == assetsList.model_loader_collada) {
-						console.log("Collada model loaded", gltf.scene.children);
+					//if (loader == assetsList.model_loader_collada) {
 						for (let i = 0; i < gltf.scene.children.length; i++) {
 							let child = gltf.scene.children[i];
-							console.log(child);
+							console.log(child.type, child)
+							if (child.type == "Group") {
+								for (let j = 0; j < child.children.length; j++) {
+									let child2 = child.children[j];
+									if (child2.isMesh) {
+										assetsList.mesh_collection[name].push(child2);
+									}
+								}
+							}
 							if (child.isMesh) {
 								assetsList.mesh_collection[name].push(child);
 							}
 						}
-					}
+					//}
 					gltf.scene.traverse(function (child) {
 						if (child.isMesh && !assetsList.mesh[name]) {
 							assetsList.mesh[name] = child; // Set the mesh to the loaded mesh

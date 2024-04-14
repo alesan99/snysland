@@ -18,7 +18,7 @@ export class Player extends PhysicsObject {
 
 		this.angle = 0;
 
-		this.facing = 0; // radians
+		this.facing = Math.PI; // radians
 		this.pitch = 0; // Between 0 and PI
 
 		this.walking = false;
@@ -37,7 +37,7 @@ export class Player extends PhysicsObject {
 
 		this.speed = 20;
 
-		this.size = 1;
+		this.size = 4;
 		this.shape = new Shape(
 			-this.size/2,-this.size/2,
 			this.size/2,-this.size/2,
@@ -95,6 +95,16 @@ export class Player extends PhysicsObject {
 			this.sx = 0;
 			this.sy = 0;
 		}
+	}
+
+	spawn(x, y) {
+		this.spawnX = x;
+		this.spawnY = y;
+		this.setPosition(x, y);
+	}
+
+	die() {
+		this.spawn(this.spawnX, this.spawnY);
 	}
 
 	render(render, scene, camera) {

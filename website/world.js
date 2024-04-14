@@ -8,7 +8,12 @@ class World {
 
 	}
 
-	load (scene, area="area1") {
+	load (scene, area="area4") {
+		if (area == "finish") {
+			window.location.href = "https://www.youtube.com/watch?v=sOX4-t74Wq0";
+			return;
+		}
+		console.log("Loading world", area);
 		// Rendering
 		this.scene = scene;
 

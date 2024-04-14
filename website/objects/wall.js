@@ -23,15 +23,15 @@ export class Wall extends PhysicsObject {
 		this.active = true;
 		this.static = true;
 
-		this.model = Assets.mesh.block.clone();
-		this.model.position.x = x;
-		this.model.position.y = z;
-		this.model.position.z = -y;
+		// this.model = Assets.mesh.block.clone();
+		// this.model.position.x = x;
+		// this.model.position.y = z;
+		// this.model.position.z = -y;
 
-		this.model.scale.x = 10.0;
-		this.model.scale.z = 10.0;
+		// this.model.scale.x = 10.0;
+		// this.model.scale.z = 10.0;
 
-		scene.add(this.model);
+		// scene.add(this.model);
 
 		this.setPosition(x, y);
 	}
